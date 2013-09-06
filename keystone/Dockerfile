@@ -21,3 +21,7 @@ RUN pip install -r /keystone/test-requirements.txt
 WORKDIR /keystone
 
 RUN python setup.py develop
+
+EXPOSE 5000 35357
+
+CMD keystone-all --config-file /keystone/etc/keystone.conf.sample
