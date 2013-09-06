@@ -10,7 +10,9 @@ To run keystone from the docker registry
     docker run -e DB_HOST=$DB_HOST -t dockerstack/keystone
 
 To build the images manually execute the command:
+
     ./build.sh
 
 To run from the built images:
+
     ./run.sh
