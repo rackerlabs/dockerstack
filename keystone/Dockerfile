@@ -22,6 +22,13 @@ WORKDIR /keystone
 
 RUN python setup.py develop
 
+RUN apt-get install -y libpq-dev
+RUN pip install psycopg2
+
+RUN apt-get install -y postgresql-client
+
 EXPOSE 5000 35357
 
-CMD keystone-all --config-file /keystone/etc/keystone.conf.sample
+ADD scripts/keystone-run.sh keystone-run.sh
+
+CMD /keystone-run.sh
