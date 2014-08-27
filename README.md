@@ -1,2 +1,3 @@
 # DockerStack
-OpenStack containerized for Docker
+
+OpenStack in Docker containers for testing.

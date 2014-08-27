@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS keystone;
+DROP ROLE IF EXISTS keystone;
+
+CREATE ROLE keystone WITH LOGIN PASSWORD 'keystone';
+CREATE DATABASE keystone WITH OWNER keystone;
