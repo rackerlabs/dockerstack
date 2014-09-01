@@ -1,0 +1,5 @@
+DROP DATABASE IF EXISTS barbican;
+DROP ROLE IF EXISTS barbican;
+
+CREATE ROLE barbican WITH LOGIN PASSWORD 'barbican';
+CREATE DATABASE barbican WITH OWNER barbican;
