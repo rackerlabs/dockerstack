@@ -69,7 +69,6 @@ barbican_port=$(docker inspect --format='{{(index (index .NetworkSettings.Ports 
 
 sed -i "s/<base_url>/http:\/\/127.0.0.1:$barbican_port/g" $config
 sed -i "s/<auth_endpoint>/http:\/\/127.0.0.1:$keystone_port/g" $config
-sed -i "s/<auth_endpoint>/http:\/\/127.0.0.1:$keystone_port/g" $config
 sed -i "s/<auth_type>/keystone/g" $config
 sed -i "s/<keystone_user>/admin_user/g" $config
 sed -i "s/<keystone_password>/password/g" $config
@@ -92,5 +91,5 @@ sed -i "s/<rbac_audit_password>/password/g" $config
 cafe-runner cloudkeep reference -p barbican --result xml --result-directory $WORKSPACE
 status=$?
 
-cleanup
+#cleanup
 exit $status
