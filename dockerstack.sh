@@ -17,6 +17,15 @@ function cleanup () {
   # Delete virtualenv
   pyenv uninstall -f cloudcafe_$BUILD_NUMBER
 
+  # Remove containers
+  docker stop $barbican_container
+  docker stop $keystone_container
+  docker stop $postgresql_container
+
+  docker rm $barbican_container
+  docker rm $keystone_container
+  docker rm $postgresql_container
+
   # Remove Docker images
   docker rmi dockerstack/barbican:$BUILD_NUMBER
   docker rmi dockerstack/keystone:$BUILD_NUMBER
