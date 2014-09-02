@@ -20,11 +20,11 @@ function cleanup () {
   # Remove containers
   docker stop $barbican_container
   docker stop $keystone_container
-  docker stop $postgresql_container
+  docker stop $db_container
 
   docker rm $barbican_container
   docker rm $keystone_container
-  docker rm $postgresql_container
+  docker rm $db_container
 
   # Remove Docker images
   docker rmi dockerstack/barbican:$BUILD_NUMBER
