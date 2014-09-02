@@ -18,20 +18,20 @@ function cleanup () {
   pyenv uninstall -f cloudcafe_$BUILD_NUMBER
 
   # Remove Docker images
-  sudo docker rmi dockerstack/barbican:$BUILD_NUMBER
-  sudo docker rmi dockerstack/keystone:$BUILD_NUMBER
-  sudo docker rmi dockerstack/postgresql:$BUILD_NUMBER
+  docker rmi dockerstack/barbican:$BUILD_NUMBER
+  docker rmi dockerstack/keystone:$BUILD_NUMBER
+  docker rmi dockerstack/postgresql:$BUILD_NUMBER
 }
 
 # Build Docker images
-sudo docker build -t dockerstack/postgresql:$BUILD_NUMBER $WORKSPACE/dockerstack/postgresql
-sudo docker build -t dockerstack/keystone:$BUILD_NUMBER $WORKSPACE/dockerstack/keystone
-sudo docker build -t dockerstack/barbican:$BUILD_NUMBER $WORKSPACE/dockerstack/barbican
+docker build -t dockerstack/postgresql:$BUILD_NUMBER $WORKSPACE/dockerstack/postgresql
+docker build -t dockerstack/keystone:$BUILD_NUMBER $WORKSPACE/dockerstack/keystone
+docker build -t dockerstack/barbican:$BUILD_NUMBER $WORKSPACE/dockerstack/barbican
 
 # Run Docker containers
-db_container=$(sudo docker run -d -P --name postgresql_$BUILD_NUMBER dockerstack/postgresql:$BUILD_NUMBER)
-keystone_container=$(sudo docker run -d -P --name keystone_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db dockerstack/keystone:$BUILD_NUMBER)
-barbican_container=$(sudo docker run -d -P --name barbican_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db --link keystone_$BUILD_NUMBER:keystone dockerstack/barbican:$BUILD_NUMBER)
+db_container=$(docker run -d -P --name postgresql_$BUILD_NUMBER dockerstack/postgresql:$BUILD_NUMBER)
+keystone_container=$(docker run -d -P --name keystone_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db dockerstack/keystone:$BUILD_NUMBER)
+barbican_container=$(docker run -d -P --name barbican_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db --link keystone_$BUILD_NUMBER:keystone dockerstack/barbican:$BUILD_NUMBER)
 
 # Clone cloud cafe projects
 git clone https://github.com/cloudkeep/opencafe.git $WORKSPACE/opencafe
