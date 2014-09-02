@@ -62,7 +62,7 @@ pyenv rehash
 cafe-config plugins install skip_on_issue
 
 # Configure cloud-cafe
-config=~/.opencafe/configs/cloudkeep/reference.config
+config=~/.pyenv/versions/cloudcafe_$BUILD_NUMBER/.opencafe/configs/cloudkeep/reference.config
 
 keystone_port=$(docker inspect --format='{{(index (index .NetworkSettings.Ports "5000/tcp") 0).HostPort}}' keystone_$BUILD_NUMBER)
 barbican_port=$(docker inspect --format='{{(index (index .NetworkSettings.Ports "9311/tcp") 0).HostPort}}' barbican_$BUILD_NUMBER)
