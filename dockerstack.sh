@@ -36,6 +36,9 @@ keystone_container=$(docker run -d -P --name keystone_$BUILD_NUMBER --link postg
 barbican_container=$(docker run -d -P --name barbican_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db --link keystone_$BUILD_NUMBER:keystone dockerstack/barbican:$BUILD_NUMBER)
 
 # Clone cloud cafe projects
+rm -rf $WORKSPACE/opencafe
+rm -rf $WORKSPACE/cloudcafe
+rm -rf $WORKSPACE/cloudroast
 git clone https://github.com/cloudkeep/opencafe.git $WORKSPACE/opencafe
 git clone https://github.com/cloudkeep/cloudcafe.git $WORKSPACE/cloudcafe
 git clone https://github.com/cloudkeep/cloudroast.git $WORKSPACE/cloudroast
