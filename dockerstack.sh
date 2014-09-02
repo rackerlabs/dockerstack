@@ -40,7 +40,7 @@ git clone https://github.com/cloudkeep/cloudroast.git $WORKSPACE/cloudroast
 
 # Set up cafe virtualenv
 pyenv virtualenv 2.7.8 cloudcafe_$BUILD_NUMBER
-peynv shell cloudcafe_$BUILD_NUMBER
+peynv local cloudcafe_$BUILD_NUMBER
 pip install opencafe/ --upgrade
 pip install cloudcafe/ --upgrade
 pip install cloudroast/ --upgrade
