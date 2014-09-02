@@ -1,0 +1,10 @@
+# Ignore barbican source
+barbican/source/
+
+# Ignore cloud cafe
+opencafe/
+cloudcafe/
+cloudroast/
+
+# Ignore vagrant
+.vagrant/
