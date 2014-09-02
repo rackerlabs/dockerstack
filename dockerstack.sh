@@ -23,6 +23,8 @@ function cleanup () {
   docker rmi dockerstack/postgresql:$BUILD_NUMBER
 }
 
+eval "$(pyenv init -)"
+
 # Build Docker images
 docker build -t dockerstack/postgresql:$BUILD_NUMBER $WORKSPACE/dockerstack/postgresql
 docker build -t dockerstack/keystone:$BUILD_NUMBER $WORKSPACE/dockerstack/keystone
@@ -40,7 +42,7 @@ git clone https://github.com/cloudkeep/cloudroast.git $WORKSPACE/cloudroast
 
 # Set up cafe virtualenv
 pyenv virtualenv 2.7.8 cloudcafe_$BUILD_NUMBER
-peynv local cloudcafe_$BUILD_NUMBER
+peynv shell cloudcafe_$BUILD_NUMBER
 pip install opencafe/ --upgrade
 pip install cloudcafe/ --upgrade
 pip install cloudroast/ --upgrade
