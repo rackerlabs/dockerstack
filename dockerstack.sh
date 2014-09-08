@@ -42,6 +42,7 @@ docker build -t dockerstack/barbican:$BUILD_NUMBER $WORKSPACE/dockerstack/barbic
 # Run Docker containers
 db_container=$(docker run -d -P --name postgresql_$BUILD_NUMBER dockerstack/postgresql:$BUILD_NUMBER)
 keystone_container=$(docker run -d -P --name keystone_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db dockerstack/keystone:$BUILD_NUMBER)
+sleep 30
 barbican_container=$(docker run -d -P --name barbican_$BUILD_NUMBER --link postgresql_$BUILD_NUMBER:db --link keystone_$BUILD_NUMBER:keystone dockerstack/barbican:$BUILD_NUMBER)
 
 # Clone cloud cafe projects
@@ -91,5 +92,5 @@ sed -i "s/<rbac_audit_password>/password/g" $config
 cafe-runner cloudkeep reference -p barbican --result xml --result-directory $WORKSPACE
 status=$?
 
-#cleanup
+cleanup
 exit $status
