@@ -27,4 +27,4 @@ keystone role-create --name=audit
 keystone user-role-add --user=admin_user --tenant=demo --role=admin
 keystone user-role-add --user=creator_user --tenant=demo --role=creator
 keystone user-role-add --user=observer_user --tenant=demo --role=observer
-keystone user-role-add --user=admin_user --tenant=demo --role=audit
+keystone user-role-add --user=audit_user --tenant=demo --role=audit
