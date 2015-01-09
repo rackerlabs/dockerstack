@@ -1,5 +1,5 @@
 export OS_SERVICE_TOKEN=ADMIN_TOKEN
-export OS_SERVICE_ENDPOINT="http://$KEYSTONE_PORT_35357_TCP_ADDR:$KEYSTONE_PORT_35357_TCP_PORT/v2.0"
+export OS_SERVICE_ENDPOINT="http://localhost:35357/v2.0"
 
 # Create admin account
 keystone user-create --name=admin --pass=password --email=admin@example.com
@@ -28,3 +28,7 @@ keystone user-role-add --user=admin_user --tenant=demo --role=admin
 keystone user-role-add --user=creator_user --tenant=demo --role=creator
 keystone user-role-add --user=observer_user --tenant=demo --role=observer
 keystone user-role-add --user=audit_user --tenant=demo --role=audit
+
+keystone service-create --name barbican --type 'key-manager'
+keystone endpoint-create --service barbican --publicurl 'http://localhost:9311'
+
