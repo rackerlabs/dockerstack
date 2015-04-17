@@ -8,7 +8,7 @@ keystone role-create --name=admin
 keystone user-role-add --user=admin --tenant=admin --role=admin
 
 # Create service user
-keystone user-create --name=barbican --pass=orange --email=barbican@example.com
+keystone user-create --name=barbican --pass=secretservice --email=barbican@example.com
 keystone tenant-create --name=service --description="Service Tenant"
 keystone user-role-add --user=barbican --tenant=service --role=admin
 
