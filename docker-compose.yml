@@ -1,0 +1,9 @@
+db:
+  build: postgresql/
+keystone:
+  build: keystone/
+  ports:
+    - "5000:5000"
+    - "35357:35357"
+  links:
+    - db
