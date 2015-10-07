@@ -1,0 +1,23 @@
+---
+- hosts: all
+  remote_user: vagrant
+  sudo: yes
+  tasks:
+    - name: add docker repo
+      copy: src=files/docker.repo dest=/etc/yum.repos.d/docker.repo
+    - name: adde epel repo
+      yum: pkg=epel-release state=latest
+    - name: ensure docker-engine is latest version
+      yum: pkg=docker-engine state=latest
+      notify:
+      - restart docker
+    - name: install docker-compose prerequisites
+      yum: name="{{ item }}" state=latest
+      with_items:
+        - python-pip
+        - python-virtualenv
+    - name: ensure docker-compose is latest version
+      pip: name=docker-compose state=latest
+  handlers:
+    - name: restart docker
+      service: name=docker state=restarted
