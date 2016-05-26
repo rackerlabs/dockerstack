@@ -32,3 +32,5 @@ keystone user-role-add --user=audit_user --tenant=demo --role=audit
 keystone service-create --name barbican --type 'key-manager'
 keystone endpoint-create --service barbican --publicurl 'http://localhost:9311'
 
+keystone service-create --name keystone --type 'identity'
+keystone endpoint-create --service keystone --adminurl 'http://localhost:35357/v3' --publicurl 'http://localhost:5000/v3'

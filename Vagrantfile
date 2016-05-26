@@ -5,7 +5,7 @@ VAGRANTFILE_API_VERSION = 2
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
-  config.vm.box = "centos-7.1"
+  config.vm.box = "centos-7.2"
 
   config.vm.network "forwarded_port", guest: 5000, host: 5000
   config.vm.network "forwarded_port", guest: 35357, host: 35357
